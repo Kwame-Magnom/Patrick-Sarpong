@@ -1,0 +1,6 @@
+{
+  "name": "GoldCoast Tech",
+  "description": "Ghana's premier online electronics storefront for iPhones, Android smartphones, laptops, and accessories with Paystack MoMo & card checkout.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

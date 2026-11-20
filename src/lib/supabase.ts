@@ -1,0 +1,28 @@
+import { createClient } from '@supabase/supabase-js';
+
+function normalizeSupabaseUrl(rawUrl: string): string {
+  return rawUrl
+    .trim()
+    .replace(/\/rest\/v1\/?$/i, '')
+    .replace(/\/+$/, '');
+}
+
+const DEFAULT_SUPABASE_URL = 'https://hlbayncsbekdmejmhorg.supabase.co';
+const DEFAULT_SUPABASE_ANON_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhsYmF5bmNzYmVrZG1lam1ob3JnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxNjYxODYsImV4cCI6MjExMDc0MjE4Nn0.gq7qTq8prh5ztSEoRZxD6JMiup1RAcjcv5wEzBHuWW4';
+
+export const supabaseUrl = normalizeSupabaseUrl(
+  import.meta.env.VITE_SUPABASE_URL || DEFAULT_SUPABASE_URL
+);
+
+export const supabaseAnonKey = (
+  import.meta.env.VITE_SUPABASE_ANON_KEY || DEFAULT_SUPABASE_ANON_KEY
+).trim();
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true,
+  },
+});
